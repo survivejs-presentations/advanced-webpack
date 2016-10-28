@@ -1,4 +1,4 @@
-# Advanced webpack
+# Advanced Webpack
 
 Advanced webpack tips. I will go through the basics too, but the focus is on more difficult tasks.
 
