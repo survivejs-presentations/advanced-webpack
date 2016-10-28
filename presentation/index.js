@@ -40,7 +40,9 @@ require("./custom.css");
 
 const slideTransition = ["slide"];
 const images = mapValues({
-  survivejs: require("../images/survivejs.png")
+  survivejs: require("../images/survivejs.png"),
+  webpack: require("../images/webpack.png"),
+  webpackGraph: require("../images/webpack-graph.png"),
 }, v => v.replace('/', ''));
 
 preloader(images);
@@ -63,10 +65,112 @@ export default class Presentation extends React.Component {
             </Heading>
           </Slide>
 
+          <Slide transition={slideTransition}>
+            <Heading caps fit size={1}>
+              Build Tools
+            </Heading>
+            <Layout>
+              <Table>
+                <thead>
+                  <TableRow>
+                    <TableHeaderItem>1st Gen.</TableHeaderItem>
+                    <TableHeaderItem>2nd Gen.</TableHeaderItem>
+                    <TableHeaderItem>3rd Gen.</TableHeaderItem>
+                  </TableRow>
+                </thead>
+                <tbody>
+                  <TableRow>
+                    <TableItem>Make</TableItem>
+                    <TableItem>Grunt</TableItem>
+                    <TableItem>Browserify</TableItem>
+                  </TableRow>
+                  <TableRow>
+                    <TableItem></TableItem>
+                    <TableItem>Gulp</TableItem>
+                    <TableItem>Brunch</TableItem>
+                  </TableRow>
+                  <TableRow>
+                    <TableItem></TableItem>
+                    <TableItem>Broccoli</TableItem>
+                    <TableItem>JSPM</TableItem>
+                  </TableRow>
+                  <TableRow>
+                    <TableItem></TableItem>
+                    <TableItem></TableItem>
+                    <TableItem><i>webpack</i></TableItem>
+                  </TableRow>
+                </tbody>
+              </Table>
+            </Layout>
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Image src={images.webpack} height="364px" />
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading size={1}>
+              Overview
+            </Heading>
+            <List>
+              <Appear><ListItem>Bundler, not a task runner</ListItem></Appear>
+              <Appear><ListItem>npm is commonly used for managing tasks</ListItem></Appear>
+              <Appear><ListItem>Grunt and Gulp integrations exist. Let webpack do the hard work</ListItem></Appear>
+              <Appear><ListItem>Quick start - <code>webpack app bundle.js</code></ListItem></Appear>
+              <Appear><ListItem>Configuration driven</ListItem></Appear>
+            </List>
+          </Slide>
+
           <Slide transition={slideTransition} bgColor="secondary">
             <Heading size={2} textColor="tertiary">
-              Core Concepts
+              Configuration
             </Heading>
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading caps fit size={1}>
+              Minimal Configuration
+            </Heading>
+            <CodePane lang="javascript">
+          {`module.exports = {
+  entry: {
+    ...
+  },
+  output: {
+    ...
+  },
+  module: {
+    rules: [
+      ...
+    ]
+  },
+  plugins: [
+    ...
+  ]
+};`}
+            </CodePane>
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading caps fit size={1}>
+              Multi-Compiler Mode
+            </Heading>
+            <CodePane lang="javascript">
+          {`module.exports = [
+  {
+    entry: {
+      ...
+    },
+    ...
+  },
+  {
+    entry: {
+      ...
+    },
+    ...
+  }
+];`}
+            </CodePane>
           </Slide>
 
           <Slide transition={slideTransition}>
@@ -338,6 +442,10 @@ const entries = Object.assign({}, entries, {
             <List>
               <Appear><ListItem></ListItem></Appear>
             </List>
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Image src={images.webpackGraph} height="324px" />
           </Slide>
 
           <Slide transition={slideTransition}>
