@@ -193,11 +193,23 @@ export default class Presentation extends React.Component {
             <CodePane lang="javascript">
           {`const config = {
   entry: {
-    style: PATHS.style,
-    app: PATHS.app
+    app: PATHS.app,
+    style: PATHS.style
   }
 };`}
             </CodePane>
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading size={1}>
+              Entries - Key Ideas
+            </Heading>
+            <List>
+              <Appear><ListItem>Starting point of the whole bundling process</ListItem></Appear>
+              <Appear><ListItem>Changes to modules within an entry will invalidate (important idea later!)</ListItem></Appear>
+              <Appear><ListItem>Allows separation of vendor dependencies in tandem with <code>CommonsChunkPlugin</code></ListItem></Appear>
+              <Appear><ListItem>Recommendation: Favor object over array (easier to manage, merge)</ListItem></Appear>
+            </List>
           </Slide>
 
           <Slide transition={slideTransition}>
@@ -214,6 +226,29 @@ export default class Presentation extends React.Component {
   }
 };`}
             </CodePane>
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading size={1}>
+              Output - Key Ideas
+            </Heading>
+            <List>
+              <Appear><ListItem>End of the bundling process</ListItem></Appear>
+              <Appear><ListItem>Instead of pointing to local assets, you can point to a CDN through <code>publicPath</code></ListItem></Appear>
+              <Appear><ListItem>Supports variety of placeholders</ListItem></Appear>
+            </List>
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading size={1}>
+              Output - Placeholders
+            </Heading>
+            <List>
+              <Appear><ListItem><code>[path]</code> - Returns an entry path</ListItem></Appear>
+              <Appear><ListItem><code>[name]</code> - Returns an entry name</ListItem></Appear>
+              <Appear><ListItem><code>[hash]</code> - Returns the build hash</ListItem></Appear>
+              <Appear><ListItem><code>[chunkhash]</code> - Returns a chunk specific hash</ListItem></Appear>
+            </List>
           </Slide>
 
           <Slide transition={slideTransition}>
@@ -235,6 +270,7 @@ export default class Presentation extends React.Component {
             query: {
               modules: true
             }
+          }
         ],
         include: PATHS.style
       }
@@ -244,7 +280,6 @@ export default class Presentation extends React.Component {
             </CodePane>
           </Slide>
 
-
           <Slide transition={slideTransition}>
             <Heading caps fit size={1}>
               Loaders - webpack 2
@@ -252,16 +287,16 @@ export default class Presentation extends React.Component {
             <CodePane lang="javascript">
           {`const config = {
   module: {
-    rules: [
+    rules: [ // rules over loaders
       {
         test: /\.css$/,
-        use: [
+        use: [ // use over loaders
           {
-            loader: 'style-loader' // Note the suffix
+            loader: 'style-loader' // note the suffix
           },
           {
             loader: 'css-loader',
-            options: {
+            options: { // options over query
               modules: true
             }
           }
@@ -279,10 +314,21 @@ export default class Presentation extends React.Component {
               Loaders - Key Ideas
             </Heading>
             <List>
-              <Appear><ListItem><code>loaders: ['style-loader', 'css-loader']</code> - <code>style(css(input))</code></ListItem></Appear>
-              <Appear><ListItem>Evaluation order: from bottom to top, right to left</ListItem></Appear>
-              <Appear><ListItem>Two phases during evaluation - pitching and running. Example: pitch <code>style</code>, pitch <code>css</code>, read <code>input</code>, run <code>css</code>, run <code>style</code>.</ListItem></Appear>
-              <Appear><ListItem>Given {`it's`} not a good idea to bundle everything as JavaScript, there are plugins like <code>ExtractTextPlugin</code></ListItem></Appear>
+              <Appear><ListItem>Transform assets from form to another</ListItem></Appear>
+              <Appear><ListItem><code>loaders: ['style-loader', 'css-loader']</code></ListItem></Appear>
+              <Appear><ListItem>Read as <code>style(css(input))</code></ListItem></Appear>
+              <Appear><ListItem>Given {`it's`} not a good idea to bundle everything as JavaScript (FOUC, performance), there are plugins like <code>ExtractTextPlugin</code></ListItem></Appear>
+            </List>
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading size={1}>
+              Loaders - Evaluation
+            </Heading>
+            <List>
+              <Appear><ListItem>Evaluation order: from bottom to top, right to left, multiple matches possible</ListItem></Appear>
+              <Appear><ListItem>Two phases during evaluation - pitching and running</ListItem></Appear>
+              <Appear><ListItem>Example: pitch <code>style</code>, pitch <code>css</code>, read <code>input</code>, run <code>css</code>, run <code>style</code>.</ListItem></Appear>
             </List>
           </Slide>
 
@@ -304,6 +350,18 @@ export default class Presentation extends React.Component {
           </Slide>
 
           <Slide transition={slideTransition}>
+            <Heading size={1}>
+              Plugins - Key Ideas
+            </Heading>
+            <List>
+              <Appear><ListItem>Evaluated from bottom to top</ListItem></Appear>
+              <Appear><ListItem>Have access to webpack lifecycle hooks</ListItem></Appear>
+              <Appear><ListItem>Complements loaders and can be used to implement tasks even</ListItem></Appear>
+              <Appear><ListItem>Sometimes combined with loaders (example: <code>ExtractTextPlugin</code>)</ListItem></Appear>
+            </List>
+          </Slide>
+
+          <Slide transition={slideTransition}>
             <Heading caps fit size={1}>
               Resolving
             </Heading>
@@ -321,6 +379,17 @@ export default class Presentation extends React.Component {
   }
 };`}
             </CodePane>
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading size={1}>
+              Resolving - Key Ideas
+            </Heading>
+            <List>
+              <Appear><ListItem>Patch module resolution to fit your project</ListItem></Appear>
+              <Appear><ListItem>{`It's`} possible to patch loader resolution too through <code>resolveLoader</code> (handy with RequireJS, custom work)</ListItem></Appear>
+              <Appear><ListItem>Can tie your project to webpack so be careful (pure Node may need hacks like patching <code>NODE_ENV</code>)</ListItem></Appear>
+            </List>
           </Slide>
 
           <Slide transition={slideTransition} bgColor="secondary">
