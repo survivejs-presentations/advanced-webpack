@@ -358,7 +358,7 @@ export default class Presentation extends React.Component {
             <List>
               <Appear><ListItem>Evaluated from bottom to top</ListItem></Appear>
               <Appear><ListItem>Have access to webpack lifecycle hooks</ListItem></Appear>
-              <Appear><ListItem>Complements loaders and can be used to implement tasks even</ListItem></Appear>
+              <Appear><ListItem>Complements loaders and can be used to implement tasks</ListItem></Appear>
               <Appear><ListItem>Sometimes combined with loaders (example: <code>ExtractTextPlugin</code>)</ListItem></Appear>
             </List>
           </Slide>
@@ -389,8 +389,8 @@ export default class Presentation extends React.Component {
             </Heading>
             <List>
               <Appear><ListItem>Patch module resolution to fit your project</ListItem></Appear>
-              <Appear><ListItem>{`It's`} possible to patch loader resolution too through <code>resolveLoader</code> (handy with RequireJS, custom work)</ListItem></Appear>
-              <Appear><ListItem>Can tie your project to webpack so be careful (pure Node may need hacks like patching <code>NODE_ENV</code>)</ListItem></Appear>
+              <Appear><ListItem>{`It's`} possible to patch loader resolution too through <code>resolveLoader</code> (handy with <Link href="http://requirejs.org/">RequireJS</Link>, custom work)</ListItem></Appear>
+              <Appear><ListItem>Ties your project to webpack so be careful (pure Node may need patching <code>NODE_ENV</code>)</ListItem></Appear>
             </List>
           </Slide>
 
@@ -684,7 +684,10 @@ System.import('./search').then(search => {
               Loading Styles
             </Heading>
             <List>
-              <Appear><ListItem>TODO</ListItem></Appear>
+              <Appear><ListItem><Link href="https://www.npmjs.com/package/css-loader">css-loader</Link> - Resolves <code>{`@import`}</code> and <code>url(...)</code></ListItem></Appear>
+              <Appear><ListItem><Link href="https://www.npmjs.com/package/style-loader">style-loader</Link> - Attaches rules to document, implements HMR</ListItem></Appear>
+              <Appear><ListItem><Link href="https://www.npmjs.com/package/extract-text-webpack-plugin">extract-text-webpack-plugin</Link> - Extracts text from bundle to a file &#x2192; Separate CSS (avoids FOUC)</ListItem></Appear>
+              <Appear><ListItem><Link href="https://www.npmjs.com/package/purifycss-webpack-plugin">purifycss-webpack-plugin</Link> - Scans files and eliminates unused CSS rules</ListItem></Appear>
             </List>
           </Slide>
 
@@ -693,8 +696,24 @@ System.import('./search').then(search => {
               Loading Fonts
             </Heading>
             <List>
-              <Appear><ListItem>TODO</ListItem></Appear>
+              <Appear><ListItem><Link href="https://www.npmjs.com/package/url-loader">url-loader</Link> - Inlines loads assets to JavaScript</ListItem></Appear>
+              <Appear><ListItem><Link href="https://www.npmjs.com/package/file-loader">file-loader</Link> - Returns file paths and emits files</ListItem></Appear>
             </List>
+            <Appear>
+              <CodePane lang="javascript">
+          {`{
+  // Match woff2 in addition to patterns like .woff?v=1.1.1.
+  test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+  loader: 'url-loader',
+  options: {
+    limit: 50000, // Limit to 50k, after limit revert to file-loader
+    mimetype: 'application/font-woff', // Set mimetype
+    name: './fonts/[hash].[ext]' // Output below fonts
+  },
+  include: PATHS.fonts
+}`}
+              </CodePane>
+            </Appear>
           </Slide>
 
           <Slide transition={slideTransition}>
@@ -702,8 +721,39 @@ System.import('./search').then(search => {
               Loading Images
             </Heading>
             <List>
-              <Appear><ListItem>TODO</ListItem></Appear>
+              <Appear><ListItem><Link href="https://www.npmjs.com/package/image-webpack-loader">image-webpack-loader</Link> - Minifies images using <Link href="https://www.npmjs.com/package/imagemin">imagemin</Link></ListItem></Appear>
+              <Appear><ListItem><Link href="https://www.npmjs.com/package/webpack-spritesmith">webpack-spritesmith</Link> - Converts images into a spritesheet using <Link href="https://www.npmjs.com/package/spritesmith">spritesmith</Link></ListItem></Appear>
             </List>
+            <Appear>
+              <CodePane lang="javascript">
+            {`{
+  test: /\.(jpg|png)$/,
+  loader: 'url?limit=25000',
+  options: {
+    limit: 25000 // Limit to 25k, after limit revert to file-loader
+  }
+  include: PATHS.images
+}
+`}
+              </CodePane>
+            </Appear>
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading fit>
+              Referencing to Images
+            </Heading>
+            <Appear>
+              <CodePane lang="javascript">
+            {`import avatarSrc from './avatar.png';
+
+// Use the image in your code now
+const Profile = () => (
+  <img src={avatarSrc} />
+);
+`}
+              </CodePane>
+            </Appear>
           </Slide>
 
           <Slide transition={slideTransition}>
@@ -711,7 +761,10 @@ System.import('./search').then(search => {
               Loading Assets - Key Ideas
             </Heading>
             <List>
-              <Appear><ListItem>TODO</ListItem></Appear>
+              <Appear><ListItem>Inline and/or emit separate assets</ListItem></Appear>
+              <Appear><ListItem>Inlining will grow your JavaScript bundles (fine for development)</ListItem></Appear>
+              <Appear><ListItem>Instead of loading multiple small images, consider spriting (single image with coordinates)</ListItem></Appear>
+              <Appear><ListItem>There are a lot of asset related loaders and plugins. Explore.</ListItem></Appear>
             </List>
           </Slide>
 
