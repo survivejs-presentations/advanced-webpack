@@ -362,7 +362,7 @@ export default class Presentation extends React.Component {
               Plugins - Key Ideas
             </Heading>
             <List>
-              <Appear><ListItem>Evaluated from bottom to top</ListItem></Appear>
+              <Appear><ListItem>Evaluated from top to bottom (the first returned value is significant)</ListItem></Appear>
               <Appear><ListItem>Have access to webpack lifecycle hooks</ListItem></Appear>
               <Appear><ListItem>Complements loaders and can be used to implement tasks</ListItem></Appear>
               <Appear><ListItem>Sometimes combined with loaders (example: <code>ExtractTextPlugin</code>)</ListItem></Appear>
