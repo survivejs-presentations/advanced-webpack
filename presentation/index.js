@@ -919,13 +919,13 @@ const Profile = () => (
 
           <Slide transition={slideTransition} bgColor="secondary">
             <Heading size={2} textColor="tertiary">
-              Long term Caching
+              Long Term Caching
             </Heading>
           </Slide>
 
           <Slide transition={slideTransition}>
             <Heading fit>
-              Long term caching - Key Ideas
+              Long Term Caching - Key Ideas
             </Heading>
             <List>
               <Appear><ListItem>Surprisingly hard problem in webpack <Link href="https://github.com/webpack/webpack/issues/1315">#1315</Link></ListItem></Appear>
