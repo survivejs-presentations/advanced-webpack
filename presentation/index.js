@@ -43,6 +43,8 @@ const images = mapValues({
   bundleOne: require("../images/bundle-01.png"),
   bundleTwo: require("../images/bundle-02.png"),
   survivejs: require("../images/survivejs.png"),
+  sourcemaps: require("../images/sourcemaps.png"),
+  visualizer: require("../images/visualizer.png"),
   webpack: require("../images/webpack.png"),
   webpackGraph: require("../images/webpack-graph.png"),
 }, v => v.replace('/', ''));
@@ -775,39 +777,38 @@ const Profile = () => (
             </Heading>
           </Slide>
 
-          <Slide transition={slideTransition}>
-            <Heading fit>
-              Analyzing Build
-            </Heading>
-            <List>
-              <Appear><ListItem>TODO</ListItem></Appear>
+          <Slide transition={slideTransition} bgImage={images.visualizer} bgDarken={0.65}>
+            <Appear>
+              <Heading fit textColor="tertiary">
+                Analyzing Build
+              </Heading>
+            </Appear>
+            <List textColor="tertiary">
+              <Appear><ListItem>1. Extract stats</ListItem></Appear>
+              <Appear><ListItem>2. Put stats through a tool</ListItem></Appear>
+              <Appear><ListItem>Use <Link href="https://www.npmjs.com/package/stats-webpack-plugin" textColor="primary">stats-webpack-plugin</Link> for more control</ListItem></Appear>
             </List>
+            <Appear>
+              <CodePane lang="javascript">
+          {`{
+  "scripts": {
+    "stats": "webpack --env stats --profile --json > stats.json",
+    ...
+  }
+}`}
+              </CodePane>
+            </Appear>
           </Slide>
 
           <Slide transition={slideTransition}>
             <Heading fit>
-              Minification
+              Example Analysis Tools
             </Heading>
             <List>
-              <Appear><ListItem>TODO</ListItem></Appear>
-            </List>
-          </Slide>
-
-          <Slide transition={slideTransition}>
-            <Heading fit>
-              Sourcemaps
-            </Heading>
-            <List>
-              <Appear><ListItem>TODO</ListItem></Appear>
-            </List>
-          </Slide>
-
-          <Slide transition={slideTransition}>
-            <Heading fit>
-              Using <code>externals</code>
-            </Heading>
-            <List>
-              <Appear><ListItem>TODO</ListItem></Appear>
+              <Appear><ListItem><Link href="https://webpack.github.io/analyse/">webpack analyse</Link> - official tool (shows dependency graph)</ListItem></Appear>
+              <Appear><ListItem><Link href="https://chrisbateman.github.io/webpack-visualizer/">webpack visualizer</Link> - Pie chart</ListItem></Appear>
+              <Appear><ListItem><Link href="https://alexkuz.github.io/webpack-chart/">webpack-chart</Link> - Pie chart</ListItem></Appear>
+              <Appear><ListItem><Link href="https://github.com/robertknight/webpack-bundle-size-analyzer">webpack-bundle-size-analyzer</Link> - Terminal based output</ListItem></Appear>
             </List>
           </Slide>
 
@@ -816,8 +817,74 @@ const Profile = () => (
               Improving Build Speed
             </Heading>
             <List>
-              <Appear><ListItem>TODO</ListItem></Appear>
+              <Appear><ListItem><code>include</code> aggressively at loaders to <b>avoid work</b></ListItem></Appear>
+              <Appear><ListItem>Use combination of <code>module.noParse</code> and <code>resolve.alias</code> against minified files to <b>avoid work</b> during development</ListItem></Appear>
+              <Appear><ListItem>Push vendor dependencies to a <Link href="https://github.com/webpack/webpack/tree/master/examples/dll">DLL</Link> to <b>avoid work</b>. Some overhead in the setup, but saves time after that.</ListItem></Appear>
+              <Appear><ListItem>Set up <Link href="https://www.npmjs.com/package/parallel-webpack">parallel-webpack</Link> or <Link href="https://www.npmjs.com/package/happypack">happypack</Link> if you want to <b>process parallel</b></ListItem></Appear>
             </List>
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading fit>
+              Using <code>externals</code>
+            </Heading>
+            <CodePane lang="javascript">
+      {`{
+  externals: {
+    jquery: '$',
+    lodash: {
+      commonjs: 'lodash',
+      commonjs2: 'lodash',
+      amd: '_',
+      root: '_'
+    },
+    react: {
+      commonjs: 'react',
+      commonjs2: 'react',
+      amd: 'React',
+      root: 'React'
+    }
+  }
+}`}
+            </CodePane>
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading fit>
+              Minification
+            </Heading>
+            <List>
+              <Appear><ListItem><Link href="https://github.com/mishoo/UglifyJS2">UglifyJS</Link> is supported out of box</ListItem></Appear>
+              <Appear><ListItem><Link href="https://github.com/babel/babili">babili</Link> might become a viable alternative for Babel</ListItem></Appear>
+            </List>
+            <Appear>
+              <CodePane lang="javascript">
+        {`{
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      },
+      mangle: {
+        screw_ie8 : true, // Don't care about IE8
+        keep_fnames: true // Don't mangle function names
+      }
+    })
+  ]
+}`}
+              </CodePane>
+            </Appear>
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading fit>
+              Sourcemaps
+            </Heading>
+            <List>
+              <Appear><ListItem><code>devtool: 'eval'</code> is a good default for development. <code>source-map</code> for production.</ListItem></Appear>
+              <Appear><ListItem><code>webpack.SourceMapDevToolPlugin</code></ListItem></Appear>
+            </List>
+            <Appear><Image src={images.sourcemaps} margin="0px auto 40px" height="324px"/></Appear>
           </Slide>
 
           <Slide transition={slideTransition}>
@@ -825,7 +892,9 @@ const Profile = () => (
               Optimizing Build - Key Ideas
             </Heading>
             <List>
-              <Appear><ListItem>TODO</ListItem></Appear>
+              <Appear><ListItem>Understand what to optimize first - analyze the stats of your build</ListItem></Appear>
+              <Appear><ListItem>Try easiest techniques with biggest wins first</ListItem></Appear>
+              <Appear><ListItem>Webpack {`isn't`} parallel by default, set up workers (parallel-webpack) when possible</ListItem></Appear>
             </List>
           </Slide>
 
