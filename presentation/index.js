@@ -688,6 +688,7 @@ System.import('./search').then(search => {
               <Appear><ListItem><Link href="https://www.npmjs.com/package/style-loader">style-loader</Link> - Attaches rules to document, implements HMR</ListItem></Appear>
               <Appear><ListItem><Link href="https://www.npmjs.com/package/extract-text-webpack-plugin">extract-text-webpack-plugin</Link> - Extracts text from bundle to a file &#x2192; Separate CSS (avoids FOUC)</ListItem></Appear>
               <Appear><ListItem><Link href="https://www.npmjs.com/package/purifycss-webpack-plugin">purifycss-webpack-plugin</Link> - Scans files and eliminates unused CSS rules</ListItem></Appear>
+              <Appear><ListItem>Enable <code>sourceMap</code> for all style related loaders for sourcemaps to work. <b>Not</b> enabled by default due to overhead.</ListItem></Appear>
             </List>
           </Slide>
 
