@@ -117,11 +117,11 @@ export default class Presentation extends React.Component {
               Overview
             </Heading>
             <List>
-              <Appear><ListItem>Bundler, not a task runner</ListItem></Appear>
+              <Appear><ListItem>Bundler, not a task runner. Plugins blur this, though.</ListItem></Appear>
               <Appear><ListItem>npm is commonly used for managing tasks</ListItem></Appear>
-              <Appear><ListItem>Grunt and Gulp integrations exist. Let webpack do the hard work</ListItem></Appear>
+              <Appear><ListItem>Grunt and Gulp integrations exist. Let webpack do the hard work.</ListItem></Appear>
               <Appear><ListItem>Quick start - <code>webpack app bundle.js</code></ListItem></Appear>
-              <Appear><ListItem>Configuration driven</ListItem></Appear>
+              <Appear><ListItem>Configuration driven. CLI works but hits limits fast.</ListItem></Appear>
             </List>
           </Slide>
 
@@ -226,7 +226,11 @@ export default class Presentation extends React.Component {
     path: PATHS.build,
     publicPath: '//path.to.your.cdn.com/assets/',
     filename: '[name].[chunkhash].js',
-    chunkFilename: '[chunkhash].js'
+    chunkFilename: '[chunkhash].js',
+
+    // Set these if you want to author a library
+    libraryTarget: 'umd',
+    library: 'Demo' // global
   }
 };`}
             </CodePane>
@@ -488,9 +492,9 @@ const entries = Object.assign({}, entries, {
             </Heading>
             <List>
               <Appear><ListItem>No single right way</ListItem></Appear>
-              <Appear><ListItem><code>merge</code> allow composition</ListItem></Appear>
+              <Appear><ListItem><code>merge</code> allows composition</ListItem></Appear>
               <Appear><ListItem>Composition allows sharing ideas across projects. Less boilerplate</ListItem></Appear>
-              <Appear><ListItem>{`Don't`} use boilerplate configuration you {`don't`} understand. This can bite later</ListItem></Appear>
+              <Appear><ListItem>Recommendation: {`Don't`} use boilerplate configuration you {`don't`} understand. This can bite later.</ListItem></Appear>
             </List>
           </Slide>
 
@@ -611,6 +615,23 @@ System.import('./search').then(search => {
   // Handle possible errors (not possible with require.ensure)
 });`}
             </CodePane>
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading size={1}>
+              <code>require.context</code>
+            </Heading>
+            <List>
+              <Appear><ListItem>Useful for dynamic cases. Example: site generator</ListItem></Appear>
+              <Appear><ListItem>Relies on static analysis</ListItem></Appear>
+            </List>
+            <Appear>
+              <CodePane lang="javascript">
+          {`const req = require.context('./pages', false, /^\.\/.*\.jsx$/);
+const page = req('./page');
+`}
+              </CodePane>
+            </Appear>
           </Slide>
 
           <Slide transition={slideTransition}>
@@ -778,11 +799,9 @@ const Profile = () => (
           </Slide>
 
           <Slide transition={slideTransition} bgImage={images.visualizer} bgDarken={0.65}>
-            <Appear>
-              <Heading fit textColor="tertiary">
-                Analyzing Build
-              </Heading>
-            </Appear>
+            <Heading fit textColor="tertiary">
+              Analyzing Build
+            </Heading>
             <List textColor="tertiary">
               <Appear><ListItem>1. Extract stats</ListItem></Appear>
               <Appear><ListItem>2. Put stats through a tool</ListItem></Appear>
@@ -909,7 +928,11 @@ const Profile = () => (
               Long term caching - Key Ideas
             </Heading>
             <List>
-              <Appear><ListItem>TODO</ListItem></Appear>
+              <Appear><ListItem>Surprisingly hard problem in webpack <Link href="https://github.com/webpack/webpack/issues/1315">#1315</Link></ListItem></Appear>
+              <Appear><ListItem>Modules and numbers get number ids based on order by default. Use <code>recordsPath</code> to store/restore for stability</ListItem></Appear>
+              <Appear><ListItem>Alternatives: <code>NamedModulesPlugin</code> (leaks path), <code>HashedModuleIdsPlugin</code></ListItem></Appear>
+              <Appear><ListItem>If you separate a vendor bundle, separate <code>manifest</code> too to avoid invalidation</ListItem></Appear>
+              <Appear><ListItem>Include hash in file name - <code>output.filename = '[name].[chunkhash].js'</code></ListItem></Appear>
             </List>
           </Slide>
 
