@@ -930,9 +930,9 @@ const Profile = () => (
             <List>
               <Appear><ListItem>Surprisingly hard problem in webpack <Link href="https://github.com/webpack/webpack/issues/1315">#1315</Link></ListItem></Appear>
               <Appear><ListItem>Modules and numbers get number ids based on order by default. Use <code>recordsPath</code> to store/restore for stability</ListItem></Appear>
-              <Appear><ListItem>Alternatives: <code>NamedModulesPlugin</code> (leaks path), <code>HashedModuleIdsPlugin</code></ListItem></Appear>
+              <Appear><ListItem>Alternatives: <code>NamedModulesPlugin</code> (leaks path), <code>HashedModuleIdsPlugin</code>></ListItem></Appear>
               <Appear><ListItem>If you separate a vendor bundle, separate <code>manifest</code> too to avoid invalidation</ListItem></Appear>
-              <Appear><ListItem>Include hash in file name - <code>output.filename = '[name].[chunkhash].js'</code></ListItem></Appear>
+              <Appear><ListItem>Include hash in file name - <code>output.filename = '[name].[chunkhash].js'</code>. <Link href="https://www.npmjs.com/package/webpack-md5-hash">webpack-md5-hash</Link></ListItem></Appear>
             </List>
           </Slide>
 
