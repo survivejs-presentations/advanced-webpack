@@ -828,6 +828,7 @@ const Profile = () => (
               <Appear><ListItem><Link href="https://chrisbateman.github.io/webpack-visualizer/">webpack visualizer</Link> - Pie chart</ListItem></Appear>
               <Appear><ListItem><Link href="https://alexkuz.github.io/webpack-chart/">webpack-chart</Link> - Pie chart</ListItem></Appear>
               <Appear><ListItem><Link href="https://github.com/robertknight/webpack-bundle-size-analyzer">webpack-bundle-size-analyzer</Link> - Terminal based output</ListItem></Appear>
+              <Appear><ListItem><Link href="https://github.com/th0r/webpack-bundle-analyzer">Webpack Bundle Analyzer</Link> - Zoomable treeview</ListItem></Appear>
             </List>
           </Slide>
 
