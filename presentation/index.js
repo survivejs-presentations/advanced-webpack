@@ -875,11 +875,18 @@ const Profile = () => (
             </Heading>
             <List>
               <Appear><ListItem><Link href="https://github.com/mishoo/UglifyJS2">UglifyJS</Link> is supported out of box</ListItem></Appear>
+              <Appear><ListItem>See also <Link href="https://www.npmjs.com/package/webpack-parallel-uglify-plugin">webpack-parallel-uglify-plugin</Link></ListItem></Appear>
+              <Appear><ListItem>Google Closure Compiler through <Link href="https://www.npmjs.com/package/webpack-closure-compiler">webpack-closure-compiler</Link></ListItem></Appear>
               <Appear><ListItem><Link href="https://github.com/babel/babili">babili</Link> might become a viable alternative for Babel</ListItem></Appear>
             </List>
-            <Appear>
-              <CodePane lang="javascript">
-        {`{
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading fit>
+              Using <code>UglifyJsPlugin</code>
+            </Heading>
+            <CodePane lang="javascript">
+      {`{
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -892,8 +899,7 @@ const Profile = () => (
     })
   ]
 }`}
-              </CodePane>
-            </Appear>
+            </CodePane>
           </Slide>
 
           <Slide transition={slideTransition}>
