@@ -45,6 +45,7 @@ const images = mapValues({
   survivejs: require("../images/survivejs.png"),
   sourcemaps: require("../images/sourcemaps.png"),
   visualizer: require("../images/visualizer.png"),
+  prpl: require("../images/prpl.png"),
   webpack: require("../images/webpack.png"),
   webpackGraph: require("../images/webpack-graph.png"),
 }, v => v.replace('/', ''));
@@ -70,7 +71,7 @@ export default class Presentation extends React.Component {
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading caps fit size={1}>
+            <Heading caps size={1}>
               Build Tools
             </Heading>
             <Layout>
@@ -132,7 +133,7 @@ export default class Presentation extends React.Component {
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading caps fit size={1}>
+            <Heading fit>
               Minimal Configuration
             </Heading>
             <CodePane lang="javascript">
@@ -156,7 +157,7 @@ export default class Presentation extends React.Component {
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading caps fit size={1}>
+            <Heading fit>
               Multi-Compiler Mode
             </Heading>
             <CodePane lang="javascript">
@@ -178,7 +179,7 @@ export default class Presentation extends React.Component {
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading size={1}>
+            <Heading>
               Core Concepts
             </Heading>
             <List>
@@ -191,14 +192,14 @@ export default class Presentation extends React.Component {
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading caps fit>
+            <Heading caps>
               Entries
             </Heading>
             <CodePane lang="javascript">
           {`const config = {
   entry: {
     app: PATHS.app,
-    style: PATHS.style
+    style: PATHS.style // This could be an array too
   }
 };`}
             </CodePane>
@@ -217,7 +218,7 @@ export default class Presentation extends React.Component {
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading caps fit>
+            <Heading caps>
               Output
             </Heading>
             <CodePane lang="javascript">
@@ -237,7 +238,7 @@ export default class Presentation extends React.Component {
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading size={1}>
+            <Heading>
               Output - Key Ideas
             </Heading>
             <List>
@@ -248,7 +249,7 @@ export default class Presentation extends React.Component {
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading size={1}>
+            <Heading fit>
               Output - Placeholders
             </Heading>
             <List>
@@ -260,7 +261,7 @@ export default class Presentation extends React.Component {
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading caps fit size={1}>
+            <Heading>
               Loaders - webpack 1
             </Heading>
             <CodePane lang="javascript">
@@ -289,7 +290,7 @@ export default class Presentation extends React.Component {
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading caps fit size={1}>
+            <Heading>
               Loaders - webpack 2
             </Heading>
             <CodePane lang="javascript">
@@ -341,7 +342,7 @@ export default class Presentation extends React.Component {
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading caps fit>
+            <Heading caps>
               Plugins
             </Heading>
             <CodePane lang="javascript">
@@ -358,7 +359,7 @@ export default class Presentation extends React.Component {
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading size={1}>
+            <Heading>
               Plugins - Key Ideas
             </Heading>
             <List>
@@ -370,7 +371,7 @@ export default class Presentation extends React.Component {
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading caps fit size={1}>
+            <Heading caps>
               Resolving
             </Heading>
             <CodePane lang="javascript">
@@ -390,12 +391,12 @@ export default class Presentation extends React.Component {
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading size={1}>
+            <Heading fit>
               Resolving - Key Ideas
             </Heading>
             <List>
-              <Appear><ListItem>Patch module resolution to fit your project</ListItem></Appear>
-              <Appear><ListItem>{`It's`} possible to patch loader resolution too through <code>resolveLoader</code> (handy with <Link href="http://requirejs.org/">RequireJS</Link>, custom work)</ListItem></Appear>
+              <Appear><ListItem>Patch module resolution to  your project</ListItem></Appear>
+              <Appear><ListItem>{`It's`} possible to patch loader resolution too through <code>resolveLoader</code> (handy with <Link href="http://requirejs.org/">RequireJS</Link> porting, custom work)</ListItem></Appear>
               <Appear><ListItem>Ties your project to webpack so be careful (pure Node may need patching <code>NODE_ENV</code>)</ListItem></Appear>
             </List>
           </Slide>
@@ -420,7 +421,7 @@ export default class Presentation extends React.Component {
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading caps fit size={1}>
+            <Heading fit>
               npm as a Task Runner
             </Heading>
             <CodePane lang="json">
@@ -434,7 +435,7 @@ export default class Presentation extends React.Component {
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading caps fit size={1}>
+            <Heading fit>
               Capturing Env at Configuration
             </Heading>
             <CodePane lang="javascript">
@@ -445,7 +446,7 @@ export default class Presentation extends React.Component {
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading caps fit size={1}>
+            <Heading fit>
               npm and Multiple Configurations
             </Heading>
             <CodePane lang="json">
@@ -459,7 +460,7 @@ export default class Presentation extends React.Component {
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading caps fit size={1}>
+            <Heading fit>
               Naïve Merging
             </Heading>
             <CodePane lang="javascript">
@@ -474,7 +475,7 @@ const entries = Object.assign({}, entries, {
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading caps fit size={1}>
+            <Heading fit>
               Merging with <code>webpack-merge</code>
             </Heading>
             <CodePane lang="javascript">
@@ -487,8 +488,8 @@ const entries = Object.assign({}, entries, {
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading fit>
-              Managing Configuration - Key Ideas
+            <Heading >
+              Key Ideas
             </Heading>
             <List>
               <Appear><ListItem>No single right way</ListItem></Appear>
@@ -524,19 +525,20 @@ const entries = Object.assign({}, entries, {
               <Appear><ListItem>Contains <code>manifest</code> (can be extracted with a <Link href="https://github.com/diurnalist/chunk-manifest-webpack-plugin">plugin</Link>)</ListItem></Appear>
               <Appear><ListItem>Requires special care with long term caching</ListItem></Appear>
             </List>
-            <Appear>
-              <CodePane lang="javascript">
-          {`script.src = __webpack_require__.p + "" + {
-  "0": "c6c9db881503336ad305",
-  "1": "f48c218f854d0ed1fc58",
-  "2": "cc5a3042f68bec8d1148"
-}[chunkId] + ".js";`}
-              </CodePane>
-            </Appear>
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading caps fit size={1}>
+            <CodePane lang="javascript">
+        {`script.src = __webpack_require__.p + "" + {
+"0": "c6c9db881503336ad305",
+"1": "f48c218f854d0ed1fc58",
+"2": "cc5a3042f68bec8d1148"
+}[chunkId] + ".js";`}
+            </CodePane>
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading caps  size={1}>
               Entry Chunks
             </Heading>
             <List>
@@ -571,15 +573,16 @@ manifest.4e20c28ac34ef5d67895.js.map    5.74 kB       3  [emitted]  manifest
               <Appear><ListItem>Defined as split points through <code>require.ensure</code> and <code>System.import</code></ListItem></Appear>
               <Appear><ListItem><b>JSONP</b></ListItem></Appear>
             </List>
-            <Appear>
-              <CodePane lang="javascript">
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <CodePane lang="javascript">
           {`webpackJsonp([1, 4], {
   156: function(s, o) {
     s.exports = { ... }
   }
 });`}
-              </CodePane>
-            </Appear>
+            </CodePane>
           </Slide>
 
           <Slide transition={slideTransition}>
@@ -615,6 +618,13 @@ System.import('./search').then(search => {
   // Handle possible errors (not possible with require.ensure)
 });`}
             </CodePane>
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Image src={images.prpl} height="564px" />
+            <Layout>
+              <Link href="https://developers.google.com/web/fundamentals/performance/prpl-pattern/">The PRPL Pattern - Google</Link>
+            </Layout>
           </Slide>
 
           <Slide transition={slideTransition}>
@@ -692,7 +702,7 @@ const page = req('./page');
               <Appear><ListItem>Understanding chunks unlocks most of {`webpack's`} power</ListItem></Appear>
               <Appear><ListItem>Start from entries</ListItem></Appear>
               <Appear><ListItem>Define split points for parts of your application that can be loaded based on usage</ListItem></Appear>
-              <Appear><ListItem>Set up <code>CommonsChunkPlugin</code> to split main bundle(s) and to benefit from long term caching</ListItem></Appear>
+              <Appear><ListItem>Set up <code>CommonsChunkPlugin</code> to split main bundle(s) and to bene from long term caching</ListItem></Appear>
             </List>
           </Slide>
 
@@ -703,28 +713,41 @@ const page = req('./page');
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading fit>
-              Loading Styles
+            <Heading >
+              Loading Styles I
             </Heading>
             <List>
               <Appear><ListItem><Link href="https://www.npmjs.com/package/css-loader">css-loader</Link> - Resolves <code>{`@import`}</code> and <code>url(...)</code></ListItem></Appear>
               <Appear><ListItem><Link href="https://www.npmjs.com/package/style-loader">style-loader</Link> - Attaches rules to document, implements HMR</ListItem></Appear>
               <Appear><ListItem><Link href="https://www.npmjs.com/package/extract-text-webpack-plugin">extract-text-webpack-plugin</Link> - Extracts text from bundle to a file &#x2192; Separate CSS (avoids FOUC)</ListItem></Appear>
+            </List>
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading >
+              Loading Styles II
+            </Heading>
+            <List>
               <Appear><ListItem><Link href="https://www.npmjs.com/package/purifycss-webpack-plugin">purifycss-webpack-plugin</Link> - Scans files and eliminates unused CSS rules</ListItem></Appear>
               <Appear><ListItem>Enable <code>sourceMap</code> for all style related loaders for sourcemaps to work. <b>Not</b> enabled by default due to overhead.</ListItem></Appear>
             </List>
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading fit>
+            <Heading >
               Loading Fonts
             </Heading>
             <List>
               <Appear><ListItem><Link href="https://www.npmjs.com/package/url-loader">url-loader</Link> - Inlines loads assets to JavaScript</ListItem></Appear>
               <Appear><ListItem><Link href="https://www.npmjs.com/package/file-loader">file-loader</Link> - Returns file paths and emits files</ListItem></Appear>
             </List>
-            <Appear>
-              <CodePane lang="javascript">
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading fit>
+              Loading Fonts - Example
+            </Heading>
+            <CodePane lang="javascript">
           {`{
   // Match woff2 in addition to patterns like .woff?v=1.1.1.
   test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -736,20 +759,24 @@ const page = req('./page');
   },
   include: PATHS.fonts
 }`}
-              </CodePane>
-            </Appear>
+            </CodePane>
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading fit>
+            <Heading >
               Loading Images
             </Heading>
             <List>
               <Appear><ListItem><Link href="https://www.npmjs.com/package/image-webpack-loader">image-webpack-loader</Link> - Minifies images using <Link href="https://www.npmjs.com/package/imagemin">imagemin</Link></ListItem></Appear>
               <Appear><ListItem><Link href="https://www.npmjs.com/package/webpack-spritesmith">webpack-spritesmith</Link> - Converts images into a spritesheet using <Link href="https://www.npmjs.com/package/spritesmith">spritesmith</Link></ListItem></Appear>
             </List>
-            <Appear>
-              <CodePane lang="javascript">
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading fit>
+              Loading Images - Example
+            </Heading>
+            <CodePane lang="javascript">
             {`{
   test: /\.(jpg|png)$/,
   loader: 'url?limit=25000',
@@ -759,8 +786,7 @@ const page = req('./page');
   include: PATHS.images
 }
 `}
-              </CodePane>
-            </Appear>
+            </CodePane>
           </Slide>
 
           <Slide transition={slideTransition}>
@@ -781,8 +807,8 @@ const Profile = () => (
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading fit>
-              Loading Assets - Key Ideas
+            <Heading >
+              Key Ideas
             </Heading>
             <List>
               <Appear><ListItem>Inline and/or emit separate assets</ListItem></Appear>
@@ -799,7 +825,7 @@ const Profile = () => (
           </Slide>
 
           <Slide transition={slideTransition} bgImage={images.visualizer} bgDarken={0.65}>
-            <Heading fit textColor="tertiary">
+            <Heading  textColor="tertiary">
               Analyzing Build
             </Heading>
             <List textColor="tertiary">
@@ -839,7 +865,7 @@ const Profile = () => (
             <List>
               <Appear><ListItem><code>include</code> aggressively at loaders to <b>avoid work</b></ListItem></Appear>
               <Appear><ListItem>Use combination of <code>module.noParse</code> and <code>resolve.alias</code> against minified files to <b>avoid work</b> during development</ListItem></Appear>
-              <Appear><ListItem>Push vendor dependencies to a <Link href="https://github.com/webpack/webpack/tree/master/examples/dll">DLL</Link> to <b>avoid work</b>. Some overhead in the setup, but saves time after that.</ListItem></Appear>
+              <Appear><ListItem>Push vendor dependencies to a <Link href="https://github.com/webpack/webpack/tree/master/examples/dll">DLL</Link> to <b>avoid work</b></ListItem></Appear>
               <Appear><ListItem>Set up <Link href="https://www.npmjs.com/package/parallel-webpack">parallel-webpack</Link> or <Link href="https://www.npmjs.com/package/happypack">happypack</Link> if you want to <b>process parallel</b></ListItem></Appear>
             </List>
           </Slide>
@@ -870,7 +896,7 @@ const Profile = () => (
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading fit>
+            <Heading >
               Minification
             </Heading>
             <List>
@@ -903,23 +929,26 @@ const Profile = () => (
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading fit>
+            <Image src={images.sourcemaps} margin="0px auto 40px" height="324px"/>
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading>
               Sourcemaps
             </Heading>
             <List>
               <Appear><ListItem><code>devtool: 'eval'</code> is a good default for development. <code>source-map</code> for production.</ListItem></Appear>
               <Appear><ListItem><code>webpack.SourceMapDevToolPlugin</code></ListItem></Appear>
             </List>
-            <Appear><Image src={images.sourcemaps} margin="0px auto 40px" height="324px"/></Appear>
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading fit>
-              Optimizing Build - Key Ideas
+            <Heading >
+              Key Ideas
             </Heading>
             <List>
               <Appear><ListItem>Understand what to optimize first - analyze the stats of your build</ListItem></Appear>
-              <Appear><ListItem>Try easiest techniques with biggest wins first</ListItem></Appear>
+              <Appear><ListItem>Try easiest techniques with the biggest wins first</ListItem></Appear>
               <Appear><ListItem>Webpack {`isn't`} parallel by default, set up workers (parallel-webpack) when possible</ListItem></Appear>
             </List>
           </Slide>
@@ -931,20 +960,28 @@ const Profile = () => (
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading fit>
-              Long Term Caching - Key Ideas
+            <Heading >
+              Long Term Caching I
             </Heading>
             <List>
               <Appear><ListItem>Surprisingly hard problem in webpack <Link href="https://github.com/webpack/webpack/issues/1315">#1315</Link></ListItem></Appear>
               <Appear><ListItem>Modules and numbers get number ids based on order by default. Use <code>recordsPath</code> to store/restore for stability</ListItem></Appear>
-              <Appear><ListItem>Alternatives: <code>NamedModulesPlugin</code> (leaks path), <code>HashedModuleIdsPlugin</code>></ListItem></Appear>
-              <Appear><ListItem>If you separate a vendor bundle, separate <code>manifest</code> too to avoid invalidation</ListItem></Appear>
+              <Appear><ListItem>Alternatives: <code>NamedModulesPlugin</code> (leaks path), <code>HashedModuleIdsPlugin</code></ListItem></Appear>
+            </List>
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading fit>
+              Long Term Caching II
+            </Heading>
+            <List>
+              <Appear><ListItem>Vendor bundle? Separate <code>manifest</code> too to avoid invalidation</ListItem></Appear>
               <Appear><ListItem>Include hash in file name - <code>output.filename = '[name].[chunkhash].js'</code>. <Link href="https://www.npmjs.com/package/webpack-md5-hash">webpack-md5-hash</Link></ListItem></Appear>
             </List>
           </Slide>
 
           <Slide transition={slideTransition} bgColor="tertiary">
-            <Heading caps fit textColor="secondary">
+            <Heading caps  textColor="secondary">
                Read <Link href="http://survivejs.com/webpack/">SurviveJS - Webpack</Link> for more
             </Heading>
           </Slide>
