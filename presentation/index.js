@@ -779,7 +779,7 @@ const page = req('./page');
             <CodePane lang="javascript">
             {`{
   test: /\.(jpg|png)$/,
-  loader: 'url?limit=25000',
+  loader: 'url-loader?limit=25000',
   options: {
     limit: 25000 // Limit to 25k, after limit revert to file-loader
   }
