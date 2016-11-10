@@ -702,7 +702,7 @@ const page = req('./page');
               <Appear><ListItem>Understanding chunks unlocks most of {`webpack's`} power</ListItem></Appear>
               <Appear><ListItem>Start from entries</ListItem></Appear>
               <Appear><ListItem>Define split points for parts of your application that can be loaded based on usage</ListItem></Appear>
-              <Appear><ListItem>Set up <code>CommonsChunkPlugin</code> to split main bundle(s) and to bene from long term caching</ListItem></Appear>
+              <Appear><ListItem>Set up <code>CommonsChunkPlugin</code> to split main bundle(s) and to benefit from long term caching</ListItem></Appear>
             </List>
           </Slide>
 
@@ -769,6 +769,7 @@ const page = req('./page');
             <List>
               <Appear><ListItem><Link href="https://www.npmjs.com/package/image-webpack-loader">image-webpack-loader</Link> - Minifies images using <Link href="https://www.npmjs.com/package/imagemin">imagemin</Link></ListItem></Appear>
               <Appear><ListItem><Link href="https://www.npmjs.com/package/webpack-spritesmith">webpack-spritesmith</Link> - Converts images into a spritesheet using <Link href="https://www.npmjs.com/package/spritesmith">spritesmith</Link></ListItem></Appear>
+              <Appear><ListItem><Link href="https://www.npmjs.com/package/svg-inline-loader">svg-inline-loader</Link> - Inlines SVG as a module</ListItem></Appear>
             </List>
           </Slide>
 
@@ -779,7 +780,7 @@ const page = req('./page');
             <CodePane lang="javascript">
             {`{
   test: /\.(jpg|png)$/,
-  loader: 'url-loader?limit=25000',
+  loader: 'url-loader',
   options: {
     limit: 25000 // Limit to 25k, after limit revert to file-loader
   }
