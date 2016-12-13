@@ -570,7 +570,7 @@ manifest.4e20c28ac34ef5d67895.js.map    5.74 kB       3  [emitted]  manifest
             </Heading>
             <List>
               <Appear><ListItem>Used for loading functionality runtime based on actual usage (think clicking, scrolling)</ListItem></Appear>
-              <Appear><ListItem>Defined as split points through <code>require.ensure</code> and <code>System.import</code></ListItem></Appear>
+              <Appear><ListItem>Defined as split points through <code>require.ensure</code> and <code>import</code></ListItem></Appear>
               <Appear><ListItem><b>JSONP</b></ListItem></Appear>
             </List>
           </Slide>
@@ -608,11 +608,11 @@ manifest.4e20c28ac34ef5d67895.js.map    5.74 kB       3  [emitted]  manifest
 
           <Slide transition={slideTransition}>
             <Heading size={1}>
-              <code>System.import</code>
+              <code>import</code>
             </Heading>
             <CodePane lang="javascript">
           {`// Load lunr and index through a separate module
-System.import('./search').then(search => {
+import('./search').then(search => {
   // ... Do something now
 }).catch(err => {
   // Handle possible errors (not possible with require.ensure)
