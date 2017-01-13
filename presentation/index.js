@@ -350,7 +350,6 @@ export default class Presentation extends React.Component {
   plugins: [
     new ExtractTextPlugin({
       filename: 'bundle.css',
-      disable: false,
       allChunks: true
     })
   ]
@@ -416,7 +415,6 @@ export default class Presentation extends React.Component {
               <Appear><ListItem><code>Object.assign</code> to merge?</ListItem></Appear>
               <Appear><ListItem><Link href="https://www.npmjs.com/package/webpack-merge">webpack-merge</Link> might work better*</ListItem></Appear>
               <Appear><ListItem>Lots of merge variants, no clear standard yet</ListItem></Appear>
-              <Appear><ListItem>Functions (think postcss) are problematic for merging</ListItem></Appear>
             </List>
           </Slide>
 
